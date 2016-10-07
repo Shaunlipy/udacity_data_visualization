@@ -11,3 +11,6 @@ I then decide to explore the variables [Pclass, Sex, Age, SibSp, Parch, Fair, Em
 
 ## Gender vs. Survival
 The first chart I investigate is to compare the gender vs survival. The purpose is to compare if gender has any indication that affects people's survival
+
+![First Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/1.png)
+

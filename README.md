@@ -14,3 +14,14 @@ The first chart I investigate is to compare the gender vs survival. The purpose 
 
 ![First Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/1.png)
 
+It looks very obvious that there are way more men dead than women.
+
+## Passenger class vs Survival
+Next, I inspected that the passenger class vs the survival, looking to reveal if passenger class can be an indication to the survival rate. 
+
+![second Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/2.png)
+
+As shown from the picture, very obvious, the 3rd class passengers have a large propotion being dead.
+
+
+

@@ -40,13 +40,13 @@ In order to compare if survival is really affected by Gender, I should also comp
 
 As to the suggestion, I included the death count 
 
-![fourth Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/4.png)
+![fourth Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/1.png)
 
 Putting the death count next to the survival count can yield a much clearer comparison.
 
 as well as the Passenger Class vs. the survival:
 
-![fifth Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/5.png)
+![fifth Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/2.png)
 
 
 

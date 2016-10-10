@@ -1,70 +1,194 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Titanic Data Exploration</title>
-    <script src="https://www.d3js.org/d3.v3.min.js"></script>
-    <script src="https://www.dimplejs.org/dist/dimple.v2.1.6.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-  </head>
+  	<head>
+	    <meta charset="utf-8">
+	    <title>Titanic Data Exploration</title>
+	    <script src="http://d3js.org/d3.v3.min.js"></script>
+		<script src="http://dimplejs.org/dist/dimple.v2.0.0.min.js"></script>
+	    <!-- <script src="http://d3js.org/d3.v3.min.js"></script>
+	    <script src="http://dimplejs.org/dist/dimple.v2.1.6.min.js"></script> -->
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  	</head>
 
-<body class="container">
-	
-	<div class="row">
-		<h2>Gender vs. Survival</h2>
-		<div id="chart1"></div>
-	</div>
+	<body class="container">
+		
+		<div class="row">
+			<h2>Gender vs. Survival</h2>
+			<div id="chart1"></div>
+		</div>
 
-	<div class="row">
-		<div id="chart3"></div>
-	</div>
-	<script type="text/javascript">
-  		var width = 800,
-    	height = 600;
-  		var svg1 = dimple.newSvg('#chart1',width,height);
-  		d3.csv("data/titanic_data.csv", function(data){
-    		data.forEach(function (d){
-      		d['Count']=1;
-    	})
-    	console.log(data)
-    	var d = data;
-    	var myChart = new dimple.chart(svg1, d);
-    	var x = myChart.addCategoryAxis('x',['Sex','Survived']);
-    	var y = myChart.addMeasureAxis('y','Count');
-    	var s = myChart.addSeries('Sex', dimple.plot.bar);
-    	myChart.addLegend(70, 10, 510, 20, "right");
-    	myChart.draw();
-  	});
-  		var svg2 = dimple.newSvg('#chart2',width,height);
-  		d3.csv("data/titanic_data.csv", function(data){
-    		data.forEach(function (d){
-      		d['Count']=1;
-    	})
-    	console.log(data)
-    	var d = data;
-    	var myChart = new dimple.chart(svg2, d);
-    	var x = myChart.addCategoryAxis('x',['Pclass','Survived']);
-    	var y = myChart.addMeasureAxis('y','Count');
-    	var s = myChart.addSeries('Pclass', dimple.plot.bar);
-    	myChart.addLegend(70, 10, 510, 20, "right");
-    	myChart.draw();
-  	});
-  		
-  		var svg3 = dimple.newSvg('#chart3',width,height);
-			// d3.csv("data/titanic_data.csv", function(d){
-			d3.csv("data/titanic_data.csv", function(d){
-	    		d.forEach(function (dt){
-		      		if (dt['Age']===''){
-		      			dt['Age']=0;
-		      		}
-		    	});
-			var myChart = new dimple.chart(svg3, d);
-			var x = myChart.addMeasureAxis('x','Fare');
-			var y = myChart.addMeasureAxis('y','Age');
-			var s = myChart.addSeries(['Name','Survived'], dimple.plot.bubble)
-			myChart.addLegend(70, 10, 510, 20, "right");
-			myChart.draw();
-		});
-  </script>
-</body>
+		<div class="row">
+			<h2>Passenger Class vs. Survival</h2>
+			<div id="chart2"></div>
+		</div>
+
+		<div class="row">
+			<h2>Age and Fare vs. Survival</h2>
+			<div id="chart3"></div>
+		</div>
+
+		<div class="row">
+			<h2>Updated: Gender vs. Survival</h2>
+			<div id="chart4"></div>
+		</div>
+
+		<div class="row">
+			<h2>Updated: Passenger Class vs. Survival</h2>
+			<div id="chart5"></div>
+		</div>
+
+		<div class="row">
+			<h2>Gender Survival Percentage</h2>
+			<p>Male: 468 Dead, 109 Survived -- 18.89% male survived</p>
+			<p>Female: 81 Dead, 233 Survived -- 74.20% female survived</p>
+			<div id="chart6"></div>
+		</div>
+
+		<div class="row">
+			<h2>Passenger Survival Percentage</h2>
+			<p>1st Class: 80 Dead, 136 Survived -- 62.96% survived</p>
+			<p>2nd Class: 97 Dead, 87 Survived -- 47.28% survived</p>
+			<p>3rd Class: 372 Dead, 119 Survived -- 24.23% survived</p>
+			<div id="chart7"></div>
+		</div>
+
+		<div class="row">
+			<h2>Age vs. Survival</h2>
+			<div id="chart8"></div>
+		</div>
+		<script type="text/javascript">
+	  		var width = 800,
+	    	height = 600;
+	    	// First chart: bar chart to show the relationship between sex and survival
+	    	var svg1 = dimple.newSvg('#chart1',width,height);
+	  		d3.csv("data/titanic_data.csv", function(data){
+		    	var d = data;
+		    	var myChart = new dimple.chart(svg1, d);
+		    	myChart.defaultColors=[new dimple.color("#44b3c2"),
+		    		new dimple.color("#e45641")];
+		    	var x = myChart.addCategoryAxis('x','Sex');
+		    	var y = myChart.addMeasureAxis('y','Survived');
+		    	var s = myChart.addSeries('Sex', dimple.plot.bar);
+		    	s.addOrderRule(['male','female']);
+		    	myChart.addLegend(70, 10, 510, 20, "right");
+		    	myChart.draw();
+		  	});
+
+		  	// Second chart: bar tchart to show passenger class with survival
+	  		var svg2 = dimple.newSvg('#chart2',width,height);
+	  		d3.csv("data/titanic_data.csv", function(data){
+		    	var d = data;
+		    	var myChart = new dimple.chart(svg2, d);
+		    	var x = myChart.addCategoryAxis('x','Pclass');
+		    	var y = myChart.addMeasureAxis('y','Survived');
+		    	var s = myChart.addSeries('Pclass', dimple.plot.bar);
+		    	s.addOrderRule(['3','2','1']);
+		    	myChart.addLegend(70, 10, 510, 20, "right");
+		    	myChart.draw();
+		  	});
+	  		
+	  		// Third chart: scatter plot to show the relation of Fare and Age with Survival
+	  		var svg3 = dimple.newSvg('#chart3',width,height);
+				// d3.csv("data/titanic_data.csv", function(d){
+				d3.csv("data/titanic_data.csv", function(d){
+		    		d.forEach(function (dt){
+			      		if (dt['Age']===''){
+			      			dt['Age']=0;
+			      		}
+			    	});
+				var myChart = new dimple.chart(svg3, d);
+				myChart.defaultColors=[new dimple.color("#8cba19"),
+		    		new dimple.color("#914574")];
+				var x = myChart.addMeasureAxis('x','Fare');
+				var y = myChart.addMeasureAxis('y','Age');
+				var s = myChart.addSeries(['Name','Survived'], dimple.plot.bubble)
+				myChart.addLegend(70, 10, 510, 20, "right");
+				myChart.draw();
+			});
+
+			// Fourth chart: bar chart to show the relationship between Sex and Survival
+	  		var svg4 = dimple.newSvg('#chart4',width,height);
+	  		d3.csv("data/titanic_data.csv", function(data){
+	    		data.forEach(function (d){
+		      		d['Count']=1;
+		    	})
+		    	console.log(data)
+		    	var d = data;
+		    	var myChart = new dimple.chart(svg4, d);
+		    	myChart.defaultColors=[new dimple.color("#e45641"),
+		    		new dimple.color("#44b3c2")];
+		    	var x = myChart.addCategoryAxis('x',['Sex','Survived']);
+		    	var y = myChart.addMeasureAxis('y','Count');
+		    	var s = myChart.addSeries('Sex', dimple.plot.bar);
+		    	s.addOrderRule(['female','male']);
+		    	myChart.addLegend(70, 10, 510, 20, "right");
+		    	myChart.draw();
+		  	});
+
+	  		// Fifth chart: bar tchart to show passenger class with survival
+	  		var svg5 = dimple.newSvg('#chart5',width,height);
+	  		d3.csv("data/titanic_data.csv", function(data){
+	    		data.forEach(function (d){
+		      		d['Count']=1;
+		    	})
+		    	console.log(data)
+		    	var d = data;
+		    	var myChart = new dimple.chart(svg5, d);
+		    	var x = myChart.addCategoryAxis('x',['Pclass','Survived']);
+		    	var y = myChart.addMeasureAxis('y','Count');
+		    	var s = myChart.addSeries('Pclass', dimple.plot.bar);
+		    	s.addOrderRule(['3','2','1']);
+		    	myChart.addLegend(70, 10, 510, 20, "right");
+		    	myChart.draw();
+		  	});
+
+			// Sixth chart: bar tchart to show gender with survival percentage
+	  		var svg6 = dimple.newSvg('#chart6',width,height);
+	  		var data = [
+	  			{'Sex':'female','Survived':0.7420},
+	  			{'Sex':'male','Survived':0.1889}];	
+	    	var myChart = new dimple.chart(svg6, data);
+	    	var x = myChart.addCategoryAxis('x','Sex');
+	    	var y = myChart.addMeasureAxis('y','Survived');
+	    	var s = myChart.addSeries('Sex', dimple.plot.bar);
+	    	s.addOrderRule(['male','female']);
+	    	myChart.addLegend(70, 10, 510, 20, "right");
+	    	myChart.draw();	
+
+	    	// Seventh chart: bar tchart to show passenger class with survival
+	  		var svg7 = dimple.newSvg('#chart7',width,height);
+	  		var data = [
+	  			{'Pclass':1,'Survived':0.6296},
+	  			{'Pclass':2,'Survived':0.4728},
+	  			{'Pclass':3,'Survived':0.2423}];	
+	    	var myChart = new dimple.chart(svg7, data);
+	    	var x = myChart.addCategoryAxis('x','Pclass');
+	    	var y = myChart.addMeasureAxis('y','Survived');
+	    	var s = myChart.addSeries('Pclass', dimple.plot.bar);
+	    	s.addOrderRule(['3','2','1']);
+	    	myChart.addLegend(70, 10, 510, 20, "right");
+	    	myChart.draw();	
+
+	    	// Eighth chart: bar tchart to show passenger class with survival
+	  		var svg8 = dimple.newSvg('#chart8',width,height);
+	  		var data = [
+	  			{'Age':'NA','Survived':'No','Count':125},
+	  			{'Age':'NA','Survived':'Yes','Count':52},
+	  			{'Age':'0-15','Survived':'No','Count':33},
+	  			{'Age':'0-15','Survived':'Yes','Count':45},
+	  			{'Age':'15-30','Survived':'No','Count':195},
+	  			{'Age':'15-30','Survived':'Yes','Count':111},
+	  			{'Age':'30-50','Survived':'No','Count':149},
+	  			{'Age':'30-50','Survived':'Yes','Count':107},
+	  			{'Age':'>50','Survived':'No','Count':47},
+	  			{'Age':'>50','Survived':'Yes','Count':27}];	
+	    	var myChart = new dimple.chart(svg8, data);
+	    	var x = myChart.addCategoryAxis('x','Age');
+	    	var y = myChart.addMeasureAxis('y','Count');
+	    	var s = myChart.addSeries('Survived', dimple.plot.bar);
+	    	x.addOrderRule(['NA','0-15','15-30','30-50','>50']);
+	    	myChart.addLegend(70, 10, 510, 20, "right");
+	    	myChart.draw();
+	  	</script>
+	</body>
 </html>

@@ -61,6 +61,10 @@ In order to give a most intuitive image, I should directly plot the percentages 
 
 ![Sixth Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/6.png)
 
+The passenger chart is also adapted to show the percentage of survival for each class
+
+![Seventh Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/7.png)
+
 
 
 

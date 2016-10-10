@@ -3,11 +3,18 @@ In this final project, I am analyzing the Titanic Data. This dataset has 891 pas
 
 After running in iPython (code.ipynb), I found there are 177 missing values for Age variable. 687 missing values for Cabin variable. 2 missing values for Embarked variable.
 
+## Design
 For this project, I will use dimple.js for data visualization. And I will exclude Cabin variable since there are too many missing values. 
 
 And I would recode the NaN of Age variable to 0 to see run the data visualization.
 
-I then decide to explore the variables to investigate the correlation with outcome variable Survived.
+My purpose is to explore the variables to investigate the correlation with outcome variable Survived. I would like to find out what variables can have most indication on the Survived variable.
+
+Before plotting, my intuition is: Age should be a strong variable, since the younger (children) people should be more likely to get onboard the lifeboat (from the movie). Perhaps the elder people are also likely to be survived.
+
+Gender should be a strong indicator as well, most likely women should have more survived.
+
+I would also like to see if First class passengers are more likely to be survived than Third class passengers (Passenger class should also be correlated with Fare: first class fare should be higher than third class).
 
 ## Gender vs. Survival
 The first chart I investigate is to compare the gender vs survival. The purpose is to compare if gender has any indication that affects people's survival

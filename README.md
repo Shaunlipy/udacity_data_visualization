@@ -55,6 +55,11 @@ as well as the Passenger Class vs. the survival:
 
 ![fifth Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/2.png)
 
+### Second
+
+In order to give a most intuitive image, I should directly plot the percentages of male survived (survived male over all male) vs. female survived (survived female over all female).
+
+![Sixth Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/6.png)
 
 
 

@@ -65,6 +65,13 @@ The passenger chart is also adapted to show the percentage of survival for each 
 
 ![Seventh Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/7.png)
 
+### Third
+
+In order to give a better visualization of people's age vs. survival rate. I categorized age into different age groups: NA, 0-15, 15-30, 30-50, 50 and up. Then for each age group, I plot the number of people survived (yes) vs people dead (no).
+
+![Eighth Chart](https://github.com/Shaunlipy/udacity_data_visualization/blob/master/pics/8.png)
+
+
 
 
 
